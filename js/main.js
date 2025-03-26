@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Reset all controls
-        document.querySelectorAll('.bird-figure-left, .bird-figure-right').forEach(function(el) {
+        document.querySelectorAll('.bird-figure-left, .bird-figure-right').forEach(function(el) {.
             el.classList.remove('playing');
         });
         

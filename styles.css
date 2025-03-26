@@ -408,8 +408,24 @@ p:first-of-type {
     text-indent: 0;
 }
 
-/* Make sure even paragraphs with images have proper indentation */
+/* Fix paragraph indentation - make sure the text is properly indented */
 .indented-paragraph {
+    text-indent: 2em !important;
+}
+
+/* Make sure paragraph text wraps around images with proper indentation */
+p.indented-paragraph {
+    display: block;
+    text-indent: 2em !important;
+}
+
+/* Ensure the first line of paragraph with floated images is properly indented */
+p.indented-paragraph:first-line {
+    text-indent: 2em !important;
+}
+
+/* Ensure the paragraph text after the image still maintains indentation */
+.figure-left + p, .figure-right + p {
     text-indent: 2em !important;
 }
 
@@ -476,21 +492,22 @@ p:first-of-type {
     }
 }
 
-/* Format reference citations */
+/* Fix citation formatting - remove indents from citation text */
 .reference {
     margin-bottom: 1rem;
-    padding-left: 2em;
-    text-indent: -2em;
+    text-indent: 0;
+    padding-left: 0;
     font-family: 'Times New Roman', Times, serif;
     line-height: 1.5;
     text-align: left;
 }
 
-/* Style for the URL part of the citation */
+/* Only indent the URL part */
 .reference-url {
     display: block;
-    padding-left: 2em; /* Indentation for the URL */
+    padding-left: 2em;
     margin-top: 0.2rem;
+    text-indent: 0;
 }
 
 .reference-url a {
