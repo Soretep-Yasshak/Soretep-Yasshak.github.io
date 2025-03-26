@@ -1,15 +1,16 @@
 /* Base Styles */
 :root {
-    --primary-color: #2E7D32;
-    --secondary-color: #1B5E20;
-    --accent-color: #81C784;
-    --light-accent: #C8E6C9;
-    --dark-text: #263238;
-    --light-text: #ECEFF1;
-    --background: #F5F5F5;
-    --card-background: #FFFFFF;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --primary-color: #3B7D4E;
+    --secondary-color: #295C3A;
+    --accent-color: #8EC68E;
+    --light-accent: #D9EAD3;
+    --dark-text: #2A3B2D;
+    --light-text: #F8FAF0;
+    --background: #F7F9F2;
+    --card-background: rgba(255, 255, 255, 0.92);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
+    --content-width: 900px;
 }
 
 * {
@@ -19,15 +20,20 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
     color: var(--dark-text);
     background-color: var(--background);
+    background-image: url('images/lullwater-background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: var(--content-width);
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -51,11 +57,15 @@ a:hover {
 
 /* Header */
 header {
-    background-color: var(--primary-color);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(43, 91, 58, 0.85)), url('images/lullwater-background.jpg');
+    background-size: cover;
+    background-position: center;
     color: var(--light-text);
-    padding: 2rem 0;
+    padding: 6rem 0 4rem;
     text-align: center;
     box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    position: relative;
 }
 
 header h1 {
@@ -86,13 +96,14 @@ header h2 {
 
 /* Audio Player */
 .audio-player {
-    background-color: var(--secondary-color);
+    background-color: rgba(41, 92, 58, 0.95);
     color: var(--light-text);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: var(--shadow);
+    backdrop-filter: blur(5px);
 }
 
 .audio-player .container {
@@ -154,62 +165,82 @@ header h2 {
 
 /* Main Content Sections */
 main {
-    padding: 3rem 0;
+    padding: 2rem 0;
+    background-color: var(--card-background);
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
 }
 
 section {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
 }
 
 section h3 {
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
 }
 
 section p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--dark-text);
+    text-align: justify;
 }
 
 .intro, .history, .features, .sustainability, .personal-experience, .conclusion {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+    position: relative;
+    padding-bottom: 1.5rem;
 }
 
 .text-content {
-    flex: 1 1 500px;
+    margin-bottom: 2rem;
 }
 
 .image-container {
-    flex: 1 1 400px;
+    margin: 2rem auto;
+    max-width: 700px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
 }
 
 .caption {
-    padding: 0.5rem;
-    background-color: var(--light-accent);
+    padding: 0.8rem;
+    background-color: rgba(142, 198, 142, 0.3);
     color: var(--dark-text);
     font-size: 0.9rem;
     text-align: center;
+    font-style: italic;
+    border-top: 1px solid rgba(41, 92, 58, 0.2);
 }
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    flex: 1 1 400px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
 .image-item {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+    transform: translateY(-5px);
 }
 
 /* Wildlife Section and Bird Cards */
@@ -222,28 +253,35 @@ section p {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin: 2.5rem 0;
 }
 
 .bird-card {
-    background-color: var(--card-background);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    width: 300px;
-    transition: var(--transition);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    border: 1px solid rgba(142, 198, 142, 0.3);
 }
 
 .bird-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-color);
 }
 
 .bird-card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
+    transition: transform 1.5s ease;
+}
+
+.bird-card:hover img {
+    transform: scale(1.05);
 }
 
 .bird-card h4 {
@@ -397,10 +435,14 @@ section p {
 
 /* Footer */
 footer {
-    background-color: var(--primary-color);
+    background-color: rgba(41, 92, 58, 0.9);
     color: var(--light-text);
     padding: 2rem 0;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 footer a {
@@ -411,8 +453,47 @@ footer a:hover {
     color: var(--light-text);
 }
 
+/* Added styles for a more essay-like feel */
+.intro::first-letter {
+    font-size: 3.5em;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.2em;
+    color: var(--primary-color);
+    font-family: 'Georgia', serif;
+}
+
+.citation {
+    font-style: italic;
+    color: #666;
+    font-size: 0.85em;
+    vertical-align: super;
+}
+
+.quote {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+    font-style: italic;
+    margin: 1.5rem 0 1.5rem 1rem;
+    color: #444;
+}
+
+/* Add a decorative element between sections */
+section:not(:last-child)::after {
+    content: "❧";
+    display: block;
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    header {
+        padding: 4rem 0 3rem;
+    }
+    
     header h1 {
         font-size: 2.5rem;
     }
@@ -444,14 +525,34 @@ footer a:hover {
         width: 100%;
         max-width: 300px;
     }
+    
+    section {
+        padding: 0 1.2rem;
+    }
+    
+    .intro::first-letter {
+        font-size: 3em;
+    }
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 3rem 0 2rem;
+    }
+    
     header h1 {
         font-size: 2rem;
     }
     
     section h3 {
         font-size: 1.5rem;
+    }
+    
+    main {
+        border-radius: 0;
+    }
+    
+    .container {
+        width: 95%;
     }
 }

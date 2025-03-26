@@ -32,8 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Update playback speed
-        if (speedSlider) {
+        if (speedSlider && speedValue) {
+            // Initial display update to make sure it's correct
+            speedValue.textContent = parseFloat(speedSlider.value).toFixed(1) + 'x';
+            
+            // Update on slider change
             speedSlider.addEventListener('input', function() {
+                const speed = parseFloat(this.value);
+                narration.playbackRate = speed;
+                speedValue.textContent = speed.toFixed(1) + 'x';
+                console.log("Speed updated to: " + speed.toFixed(1) + 'x'); // Debug line
+            });
+            
+            // Also handle 'change' event for better mobile support
+            speedSlider.addEventListener('change', function() {
                 const speed = parseFloat(this.value);
                 narration.playbackRate = speed;
                 speedValue.textContent = speed.toFixed(1) + 'x';
