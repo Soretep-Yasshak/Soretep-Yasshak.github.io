@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const robinAudio = new Audio('audio/american-robin-song.mp3');
     const chickadeeAudio = new Audio('audio/carolina-chickadee-song.mp3');
     const doveAudio = new Audio('audio/mourning-dove-song.mp3');
+    
+    // Bird play buttons
+    const birdPlayButtons = document.querySelectorAll('.bird-play-button');
+    const birdProgressBars = document.querySelectorAll('.bird-audio-progress-bar');
 
     // Audio narration functionality
     if (playButton && narration) {
@@ -65,38 +69,96 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Bird chirping functionality
-    if (americanRobin) {
-        americanRobin.addEventListener('click', function() {
-            stopAllBirdSounds();
-            robinAudio.play();
+    // Bird audio functionality
+    function setupBirdAudio(birdElement, audio, index) {
+        const progressBar = birdProgressBars[index];
+        const playButton = birdPlayButtons[index];
+        let isPlaying = false;
+        
+        if (!birdElement || !audio || !progressBar || !playButton) return;
+        
+        // Initial click to show controls
+        birdElement.addEventListener('click', function(e) {
+            if (!birdElement.classList.contains('playing')) {
+                stopAllBirdSounds();
+                birdElement.classList.add('playing');
+                audio.play();
+                isPlaying = true;
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                e.stopPropagation();
+            }
+        });
+        
+        // Play/pause button inside controls
+        playButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isPlaying) {
+                audio.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audio.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Progress bar update
+        audio.addEventListener('timeupdate', function() {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percent + '%';
+        });
+        
+        // Reset when audio ends
+        audio.addEventListener('ended', function() {
+            birdElement.classList.remove('playing');
+            isPlaying = false;
+            progressBar.style.width = '0%';
+            playButton.innerHTML = '<i class="fas fa-play"></i>';
+        });
+        
+        // Click outside to close controls
+        document.addEventListener('click', function(e) {
+            if (birdElement.classList.contains('playing') && !birdElement.contains(e.target)) {
+                audio.pause();
+                audio.currentTime = 0;
+                birdElement.classList.remove('playing');
+                isPlaying = false;
+                progressBar.style.width = '0%';
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
         });
     }
-
-    if (carolinaChickadee) {
-        carolinaChickadee.addEventListener('click', function() {
-            stopAllBirdSounds();
-            chickadeeAudio.play();
-        });
-    }
-
-    if (mourningDove) {
-        mourningDove.addEventListener('click', function() {
-            stopAllBirdSounds();
-            doveAudio.play();
-        });
+    
+    if (americanRobin && carolinaChickadee && mourningDove) {
+        setupBirdAudio(americanRobin, robinAudio, 1);
+        setupBirdAudio(carolinaChickadee, chickadeeAudio, 0);
+        setupBirdAudio(mourningDove, doveAudio, 2);
     }
     
     // Function to stop all bird sounds
     function stopAllBirdSounds() {
+        // Stop and reset all audio
         robinAudio.pause();
         robinAudio.currentTime = 0;
         chickadeeAudio.pause();
         chickadeeAudio.currentTime = 0;
         doveAudio.pause();
         doveAudio.currentTime = 0;
+        
+        // Reset all controls
+        document.querySelectorAll('.bird-figure').forEach(function(el) {
+            el.classList.remove('playing');
+        });
+        
+        document.querySelectorAll('.bird-audio-progress-bar').forEach(function(el) {
+            el.style.width = '0%';
+        });
+        
+        document.querySelectorAll('.bird-play-button').forEach(function(el) {
+            el.innerHTML = '<i class="fas fa-play"></i>';
+        });
     }
-
+    
     // Handle initial page load animation
     document.body.classList.add('loaded');
 });

@@ -190,7 +190,29 @@ section h3 {
     padding-left: 1rem;
 }
 
-/* Chirping indicator for bird images */
+/* Advanced bird audio controls */
+.bird-figure {
+    position: relative;
+    float: right;
+    margin: 0 0 0.5rem 1rem;
+    max-width: 40%;
+    clear: right;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bird-figure img {
+    max-width: 100%;
+    display: block;
+    margin: 0;
+    border: 1px solid #ddd;
+    transition: filter 0.3s ease;
+}
+
+.bird-figure.playing img {
+    filter: brightness(1.05);
+}
+
 .chirp-indicator {
     position: absolute;
     top: -30px;
@@ -206,6 +228,62 @@ section h3 {
     animation: bounce 1s infinite;
     pointer-events: none;
     white-space: nowrap;
+    z-index: 10;
+}
+
+.bird-audio-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bird-figure.playing .bird-audio-controls {
+    display: flex;
+    opacity: 1;
+}
+
+.bird-play-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FFEB3B;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+}
+
+.bird-play-button:hover {
+    transform: scale(1.1);
+}
+
+.bird-audio-progress {
+    width: 80%;
+    height: 8px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bird-audio-progress-bar {
+    height: 100%;
+    background-color: #FFEB3B;
+    width: 0;
+    transition: width 0.1s linear;
 }
 
 @keyframes bounce {
@@ -215,35 +293,6 @@ section h3 {
     50% {
         transform: translateX(-50%) translateY(-10px);
     }
-}
-
-.bird-figure {
-    position: relative;
-    float: right;
-    margin: 0.5rem 0 1rem 1.5rem;
-    max-width: 45%;
-    clear: right;
-    cursor: pointer;
-}
-
-.bird-figure:hover .chirp-indicator {
-    display: block;
-}
-
-.bird-figure .chirp-indicator {
-    display: none;
-}
-
-.bird-figure img {
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    transition: transform 0.2s ease;
-}
-
-.bird-figure:hover img {
-    transform: scale(1.03);
 }
 
 p {
@@ -512,30 +561,39 @@ footer .container > p {
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* Figure styling to match square wrap text */
+/* Figure styling to match square wrap text exactly */
 .figure {
     float: right;
-    margin: 0.5rem 0 1rem 1.5rem;
-    max-width: 45%;
+    margin: 0 0 0.5rem 1rem;
+    max-width: 40%;
     clear: right;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .figure img {
     max-width: 100%;
     display: block;
-    margin: 0 auto;
+    margin: 0;
     border: 1px solid #ddd;
 }
 
 .figure-caption {
     padding: 0.5rem;
-    background-color: #f0f0f0;
+    background-color: #e8f4e8;
     color: var(--dark-text);
     font-size: 0.9rem;
     text-align: center;
-    font-style: italic;
     border: 1px solid #ddd;
     border-top: 0;
+    font-style: normal;
+}
+
+.figure-caption .figure-number {
+    font-style: italic;
+}
+
+.figure-caption .figure-description {
+    font-style: italic;
 }
 
 .text-content {
