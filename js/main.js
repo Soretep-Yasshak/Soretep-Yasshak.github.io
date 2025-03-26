@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const chickadeeAudio = document.getElementById('chickadee-sound');
     const doveAudio = document.getElementById('dove-sound');
     
+    // Modal elements
+    const citationsButton = document.getElementById('citations-button');
+    const citationsModal = document.getElementById('citations-modal');
+    const closeButton = document.querySelector('.close-button');
+    
     // Audio narration functionality
     if (playButton && narration) {
         let isPlaying = false;
@@ -107,18 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
             isPlaying = !isPlaying;
         });
         
-        // Update progress bar and display time
+        // Update progress bar
         audio.addEventListener('timeupdate', function() {
             const percent = (audio.currentTime / audio.duration) * 100;
             progressBar.style.width = percent + '%';
-            
-            // You can add a time display if needed
-            // const timeDisplay = birdElement.querySelector('.time-display');
-            // if (timeDisplay) {
-            //     const currentTime = formatTime(audio.currentTime);
-            //     const totalTime = formatTime(audio.duration);
-            //     timeDisplay.textContent = `${currentTime} / ${totalTime}`;
-            // }
         });
         
         // Reset when audio ends
@@ -140,13 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 playButton.innerHTML = '<i class="fas fa-play"></i>';
             }
         });
-    }
-    
-    // Format time as MM:SS
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     }
     
     // Setup bird audio players
@@ -183,6 +173,43 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.querySelectorAll('.bird-play-button').forEach(function(el) {
             el.innerHTML = '<i class="fas fa-play"></i>';
+        });
+    }
+    
+    // Citations modal functionality
+    if (citationsButton && citationsModal && closeButton) {
+        // Open modal when button is clicked
+        citationsButton.addEventListener('click', function() {
+            citationsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+        });
+        
+        // Close modal when X is clicked
+        closeButton.addEventListener('click', function() {
+            citationsModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
+        
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(e) {
+            if (e.target === citationsModal) {
+                citationsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && citationsModal.style.display === 'block') {
+                citationsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Make URLs in references clickable
+        document.querySelectorAll('.reference-url').forEach(function(el) {
+            const url = el.textContent.trim();
+            el.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
         });
     }
     
