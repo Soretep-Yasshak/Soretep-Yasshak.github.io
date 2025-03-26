@@ -191,17 +191,27 @@ section h3 {
 }
 
 /* Advanced bird audio controls */
-.bird-figure {
+.bird-figure-left {
+    position: relative;
+    float: left;
+    margin: 0 1rem 0.5rem 0;
+    max-width: 35%;
+    clear: left;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bird-figure-right {
     position: relative;
     float: right;
     margin: 0 0 0.5rem 1rem;
-    max-width: 40%;
+    max-width: 35%;
     clear: right;
     cursor: pointer;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.bird-figure img {
+.bird-figure-left img, .bird-figure-right img {
     max-width: 100%;
     display: block;
     margin: 0;
@@ -209,7 +219,7 @@ section h3 {
     transition: filter 0.3s ease;
 }
 
-.bird-figure.playing img {
+.bird-figure-left.playing img, .bird-figure-right.playing img {
     filter: brightness(1.05);
 }
 
@@ -229,6 +239,11 @@ section h3 {
     pointer-events: none;
     white-space: nowrap;
     z-index: 10;
+    display: none;
+}
+
+.bird-figure-left:hover .chirp-indicator, .bird-figure-right:hover .chirp-indicator {
+    display: block;
 }
 
 .bird-audio-controls {
@@ -246,7 +261,7 @@ section h3 {
     transition: opacity 0.3s ease;
 }
 
-.bird-figure.playing .bird-audio-controls {
+.bird-figure-left.playing .bird-audio-controls, .bird-figure-right.playing .bird-audio-controls {
     display: flex;
     opacity: 1;
 }
@@ -561,16 +576,24 @@ footer .container > p {
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* Figure styling to match square wrap text exactly */
-.figure {
+/* Figure styling to match dark background layout */
+.figure-left {
+    float: left;
+    margin: 0 1rem 0.5rem 0;
+    max-width: 35%;
+    clear: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.figure-right {
     float: right;
     margin: 0 0 0.5rem 1rem;
-    max-width: 40%;
+    max-width: 35%;
     clear: right;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.figure img {
+.figure-left img, .figure-right img {
     max-width: 100%;
     display: block;
     margin: 0;
@@ -588,11 +611,11 @@ footer .container > p {
     font-style: normal;
 }
 
-.figure-caption .figure-number {
+.figure-number {
     font-style: italic;
 }
 
-.figure-caption .figure-description {
+.figure-description {
     font-style: italic;
 }
 

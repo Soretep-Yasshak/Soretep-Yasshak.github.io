@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const speed = parseFloat(this.value);
                 narration.playbackRate = speed;
                 speedValue.textContent = speed.toFixed(1) + 'x';
-                console.log("Speed updated to: " + speed.toFixed(1) + 'x'); // Debug line
             });
             
             // Also handle 'change' event for better mobile support
@@ -70,12 +69,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Bird audio functionality
-    function setupBirdAudio(birdElement, audio, index) {
-        const progressBar = birdProgressBars[index];
-        const playButton = birdPlayButtons[index];
-        let isPlaying = false;
+    function setupBirdAudio(birdElement, audio) {
+        if (!birdElement || !audio) return;
         
-        if (!birdElement || !audio || !progressBar || !playButton) return;
+        // Find specific elements within this bird container
+        const progressBar = birdElement.querySelector('.bird-audio-progress-bar');
+        const playButton = birdElement.querySelector('.bird-play-button');
+        
+        if (!progressBar || !playButton) return;
+        
+        let isPlaying = false;
         
         // Initial click to show controls
         birdElement.addEventListener('click', function(e) {
@@ -130,9 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (americanRobin && carolinaChickadee && mourningDove) {
-        setupBirdAudio(americanRobin, robinAudio, 1);
-        setupBirdAudio(carolinaChickadee, chickadeeAudio, 0);
-        setupBirdAudio(mourningDove, doveAudio, 2);
+        setupBirdAudio(americanRobin, robinAudio);
+        setupBirdAudio(carolinaChickadee, chickadeeAudio);
+        setupBirdAudio(mourningDove, doveAudio);
     }
     
     // Function to stop all bird sounds
@@ -146,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         doveAudio.currentTime = 0;
         
         // Reset all controls
-        document.querySelectorAll('.bird-figure').forEach(function(el) {
+        document.querySelectorAll('.bird-figure-left, .bird-figure-right').forEach(function(el) {
             el.classList.remove('playing');
         });
         
