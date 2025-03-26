@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Robin - Lullwater Birds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bird-page">
+    <header>
+        <div class="container">
+            <h1>American Robin</h1>
+            <h2>Turdus migratorius</h2>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Lullwater</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="bird-profile">
+            <div class="bird-image">
+                <img src="images/american-robin-large.jpg" alt="American Robin">
+            </div>
+            <div class="bird-info">
+                <div class="audio-player bird-song">
+                    <h3>Listen to the American Robin</h3>
+                    <div class="song-controls">
+                        <button id="play-song" aria-label="Play bird song">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="song-progress-container">
+                            <div class="song-progress-bar" id="song-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bird-description">
+                    <h3>About the American Robin</h3>
+                    <p>The American Robin is one of the most familiar songbirds in North America. Its range extends from Alaska to Mexico, and it's known for its cheerful song and orange-red breast. Robins are often seen hopping across lawns searching for earthworms and insects.</p>
+                    
+                    <h4>Song Characteristics</h4>
+                    <p>The American Robin's song is a series of clear whistles described as "cheerily, cheer up, cheer up, cheerily, cheer up." They often sing early in the morning and late in the evening, particularly during spring and summer.</p>
+                    
+                    <h4>At Lullwater Preserve</h4>
+                    <p>American Robins are common year-round residents at Lullwater Preserve. They can be spotted along the paths and near Candler Lake, especially in open grassy areas where they forage for food. Their song is one of the most recognizable sounds at Lullwater, creating part of the preserve's peaceful soundtrack.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Peteros Kahssay | Engrd 101 | Prof. Gallichio</p>
+            <p><a href="references.html">Works Cited</a></p>
+        </div>
+    </footer>
+
+    <audio id="bird-song" src="audio/american-robin-song.mp3"></audio>
+    
+    <script src="js/birds.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mourning Dove - Lullwater Birds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bird-page">
+    <header>
+        <div class="container">
+            <h1>Mourning Dove</h1>
+            <h2>Zenaida macroura</h2>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Lullwater</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="bird-profile">
+            <div class="bird-image">
+                <img src="images/mourning-dove-large.jpg" alt="Mourning Dove">
+            </div>
+            <div class="bird-info">
+                <div class="audio-player bird-song">
+                    <h3>Listen to the Mourning Dove</h3>
+                    <div class="song-controls">
+                        <button id="play-song" aria-label="Play bird song">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="song-progress-container">
+                            <div class="song-progress-bar" id="song-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bird-description">
+                    <h3>About the Mourning Dove</h3>
+                    <p>The Mourning Dove is one of North America's most common and widespread birds. It has a slender body with a small head, long pointed tail, and soft gray-brown plumage. These birds are known for their graceful flight and distinctive mournful cooing that gives them their name.</p>
+                    
+                    <h4>Song Characteristics</h4>
+                    <p>The Mourning Dove's call is a soft, drawn-out cooing sound that is often described as sorrowful or melancholic. The typical pattern is a series of coos that sounds like "coo-OO-oo-oo-oo." As mentioned in the essay, their song is "almost nonexistent" compared to the more vocal robins and chickadees, making it a subtle component of Lullwater's soundscape.</p>
+                    
+                    <h4>At Lullwater Preserve</h4>
+                    <p>Mourning Doves can be found in Lullwater Preserve throughout the year, often perched on branches or walking along the ground searching for seeds. They are frequently spotted near the edges of wooded areas and around Candler Lake. While not as vocal as other birds at Lullwater, their gentle cooing adds a layer of peaceful ambiance to the preserve, especially during quieter moments.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Peteros Kahssay | Engrd 101 | Prof. Gallichio</p>
+            <p><a href="references.html">Works Cited</a></p>
+        </div>
+    </footer>
+
+    <audio id="bird-song" src="audio/mourning-dove-song.mp3"></audio>
+    
+    <script src="js/birds.js"></script>
+</body>
+</html>

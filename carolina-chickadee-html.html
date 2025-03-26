@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Chickadee - Lullwater Birds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bird-page">
+    <header>
+        <div class="container">
+            <h1>Carolina Chickadee</h1>
+            <h2>Poecile carolinensis</h2>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Lullwater</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="bird-profile">
+            <div class="bird-image">
+                <img src="images/carolina-chickadee-large.jpg" alt="Carolina Chickadee">
+            </div>
+            <div class="bird-info">
+                <div class="audio-player bird-song">
+                    <h3>Listen to the Carolina Chickadee</h3>
+                    <div class="song-controls">
+                        <button id="play-song" aria-label="Play bird song">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="song-progress-container">
+                            <div class="song-progress-bar" id="song-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bird-description">
+                    <h3>About the Carolina Chickadee</h3>
+                    <p>The Carolina Chickadee is a small, active bird found throughout the southeastern United States. It has a distinctive black cap and bib with white cheeks, gray wings, and a whitish belly. These social birds are known for their acrobatic feeding behavior and complex vocalizations.</p>
+                    
+                    <h4>Song Characteristics</h4>
+                    <p>The Carolina Chickadee has several distinct calls. Their most recognizable song is a four-note whistle that sounds like "fee-bee-fee-bay." They also have a characteristic "chickadee-dee-dee" call that gives them their name, with the number of "dee" notes often indicating the level of threat they perceive.</p>
+                    
+                    <h4>At Lullwater Preserve</h4>
+                    <p>Carolina Chickadees are year-round residents at Lullwater Preserve. They can often be spotted in the trees along the paths, flitting among branches and sometimes hanging upside down while foraging. Their cheerful calls contribute significantly to the soundscape of Lullwater throughout the year, particularly in the wooded areas.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Peteros Kahssay | Engrd 101 | Prof. Gallichio</p>
+            <p><a href="references.html">Works Cited</a></p>
+        </div>
+    </footer>
+
+    <audio id="bird-song" src="audio/carolina-chickadee-song.mp3"></audio>
+    
+    <script src="js/birds.js"></script>
+</body>
+</html>
