@@ -12,14 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const mourningDove = document.getElementById('mourning-dove');
     
     // Audio files for birds
-    const robinAudio = new Audio('audio/american-robin-song.mp3');
-    const chickadeeAudio = new Audio('audio/carolina-chickadee-song.mp3');
-    const doveAudio = new Audio('audio/mourning-dove-song.mp3');
+    const robinAudio = document.getElementById('robin-sound');
+    const chickadeeAudio = document.getElementById('chickadee-sound');
+    const doveAudio = document.getElementById('dove-sound');
     
-    // Bird play buttons
-    const birdPlayButtons = document.querySelectorAll('.bird-play-button');
-    const birdProgressBars = document.querySelectorAll('.bird-audio-progress-bar');
-
     // Audio narration functionality
     if (playButton && narration) {
         let isPlaying = false;
@@ -132,24 +128,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Setup bird audio players
     if (americanRobin && carolinaChickadee && mourningDove) {
-        setupBirdAudio(americanRobin, robinAudio);
-        setupBirdAudio(carolinaChickadee, chickadeeAudio);
-        setupBirdAudio(mourningDove, doveAudio);
+        if (robinAudio) setupBirdAudio(americanRobin, robinAudio);
+        if (chickadeeAudio) setupBirdAudio(carolinaChickadee, chickadeeAudio);
+        if (doveAudio) setupBirdAudio(mourningDove, doveAudio);
     }
     
     // Function to stop all bird sounds
     function stopAllBirdSounds() {
         // Stop and reset all audio
-        robinAudio.pause();
-        robinAudio.currentTime = 0;
-        chickadeeAudio.pause();
-        chickadeeAudio.currentTime = 0;
-        doveAudio.pause();
-        doveAudio.currentTime = 0;
+        if (robinAudio) {
+            robinAudio.pause();
+            robinAudio.currentTime = 0;
+        }
+        if (chickadeeAudio) {
+            chickadeeAudio.pause();
+            chickadeeAudio.currentTime = 0;
+        }
+        if (doveAudio) {
+            doveAudio.pause();
+            doveAudio.currentTime = 0;
+        }
         
         // Reset all controls
-        document.querySelectorAll('.bird-figure-left, .bird-figure-right').forEach(function(el) {
+        document.querySelectorAll('.bird-figure-inline, .bird-figure-left, .bird-figure-right').forEach(function(el) {
             el.classList.remove('playing');
         });
         
