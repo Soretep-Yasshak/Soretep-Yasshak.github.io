@@ -24,6 +24,7 @@ body {
     font-family: 'Times New Roman', Times, serif;
     line-height: 2.5;
     color: var(--dark-text);
+    background-image: url('images/Background-Vertical.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -33,13 +34,16 @@ body {
 }
 
 .page-container {
-    background-image: url('images/lullwater-background.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* We'll keep the header background separate from the body background */
+header {
+    background-image: url('images/lullwater-background.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -68,13 +72,28 @@ a:hover {
 
 /* Header */
 header {
+    position: relative;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), var(--green-background));
+    z-index: 1;
+}
+
+header .container {
     color: var(--light-text);
     padding: 6rem 0 4rem;
     text-align: center;
     box-shadow: var(--shadow);
     margin-bottom: 0;
     position: relative;
+    z-index: 2;
 }
 
 header h1 {
@@ -378,6 +397,7 @@ section h3 {
     }
 }
 
+/* Paragraph styling */
 p {
     margin-bottom: 1.5rem;
     text-align: justify;
@@ -386,6 +406,11 @@ p {
 
 p:first-of-type {
     text-indent: 0;
+}
+
+/* Make sure even paragraphs with images have proper indentation */
+.indented-paragraph {
+    text-indent: 2em !important;
 }
 
 .text-content {
@@ -397,6 +422,7 @@ p:first-of-type {
     text-align: center;
     margin-top: 3rem;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .work-cited-heading {
@@ -406,6 +432,13 @@ p:first-of-type {
     font-weight: bold;
     margin-bottom: 1.5rem;
     color: var(--dark-text);
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.work-cited-heading:hover {
+    color: var(--primary-color);
 }
 
 .work-cited-modal-heading {
@@ -417,21 +450,30 @@ p:first-of-type {
     color: var(--dark-text);
 }
 
-/* Citations button */
-.citations-button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: var(--card-background);
-    color: var(--dark-text);
-    border: 1px solid #ccc;
+/* Click me box styling */
+.click-me-box {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    animation: jump 0.8s infinite alternate;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    display: none; /* Initially hidden, shown via JS */
 }
 
-.citations-button:hover {
-    background-color: #f0f0f0;
+@keyframes jump {
+    from {
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        transform: translateX(-50%) translateY(-10px);
+    }
 }
 
 /* Format reference citations */
@@ -537,23 +579,5 @@ p::after {
     
     section {
         padding: 0 1.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    section h3 {
-        font-size: 1.2rem;
-    }
-    
-    main {
-        border-radius: 0;
-    }
-    
-    .container {
-        width: 95%;
     }
 }

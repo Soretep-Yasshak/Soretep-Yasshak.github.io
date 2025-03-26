@@ -16,10 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const chickadeeAudio = document.getElementById('chickadee-sound');
     const doveAudio = document.getElementById('dove-sound');
     
-    // Modal elements
-    const citationsButton = document.getElementById('citations-button');
+    // Work Cited elements
+    const workCitedHeading = document.getElementById('work-cited-heading');
+    const clickMeBox = document.getElementById('click-me-box');
     const citationsModal = document.getElementById('citations-modal');
     const closeButton = document.querySelector('.close-button');
+    
+    // Check if "Click Me" box has been clicked before
+    const hasClickedBox = localStorage.getItem('clickMeBoxClicked') === 'true';
+    
+    // Show "Click Me" box if not clicked before
+    if (!hasClickedBox && clickMeBox) {
+        clickMeBox.style.display = 'block';
+    }
     
     // Audio narration functionality
     if (playButton && narration) {
@@ -176,14 +185,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Citations modal functionality
-    if (citationsButton && citationsModal && closeButton) {
-        // Open modal when button is clicked
-        citationsButton.addEventListener('click', function() {
+    // Click Me box functionality
+    if (clickMeBox) {
+        clickMeBox.addEventListener('click', function() {
+            // Hide the box
+            clickMeBox.style.display = 'none';
+            
+            // Save that it was clicked
+            localStorage.setItem('clickMeBoxClicked', 'true');
+        });
+    }
+    
+    // Work Cited heading functionality
+    if (workCitedHeading && citationsModal) {
+        workCitedHeading.addEventListener('click', function() {
             citationsModal.style.display = 'block';
             document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+            
+            // Hide "Click Me" box if visible
+            if (clickMeBox) {
+                clickMeBox.style.display = 'none';
+                localStorage.setItem('clickMeBoxClicked', 'true');
+            }
         });
-        
+    }
+    
+    // Citations modal functionality
+    if (citationsModal && closeButton) {
         // Close modal when X is clicked
         closeButton.addEventListener('click', function() {
             citationsModal.style.display = 'none';
@@ -205,13 +233,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'auto';
             }
         });
-        
-        // Make URLs in references clickable
-        document.querySelectorAll('.reference-url').forEach(function(el) {
-            const url = el.textContent.trim();
-            el.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
-        });
     }
+    
+    // Make URLs in references clickable
+    document.querySelectorAll('.reference-url').forEach(function(el) {
+        const url = el.textContent.trim();
+        el.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+    });
     
     // Handle initial page load animation
     document.body.classList.add('loaded');
