@@ -21,7 +21,7 @@
 
 body {
     font-family: 'Times New Roman', Times, serif;
-    line-height: 2.0;
+    line-height: 2.5;
     color: var(--dark-text);
     background-color: #333333;
     background-image: url('images/lullwater-background.jpg');
@@ -175,7 +175,7 @@ main {
 }
 
 section {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     padding: 0 2rem;
 }
 
@@ -190,12 +190,64 @@ section h3 {
     padding-left: 1rem;
 }
 
-section p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 2.0;
-    color: var(--dark-text);
-    text-align: justify;
+/* Chirping indicator for bird images */
+.chirp-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFEB3B;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: bounce 1s infinite;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.bird-figure {
+    position: relative;
+    float: right;
+    margin: 0.5rem 0 1rem 1.5rem;
+    max-width: 45%;
+    clear: right;
+    cursor: pointer;
+}
+
+.bird-figure:hover .chirp-indicator {
+    display: block;
+}
+
+.bird-figure .chirp-indicator {
+    display: none;
+}
+
+.bird-figure img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease;
+}
+
+.bird-figure:hover img {
+    transform: scale(1.03);
+}
+
+p {
+    margin-bottom: 1rem;
 }
 
 .intro, .history, .features, .sustainability, .personal-experience, .conclusion {
@@ -460,10 +512,12 @@ footer .container > p {
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* Figure styling */
+/* Figure styling to match square wrap text */
 .figure {
-    margin: 1.5rem 0;
-    text-align: center;
+    float: right;
+    margin: 0.5rem 0 1rem 1.5rem;
+    max-width: 45%;
+    clear: right;
 }
 
 .figure img {
@@ -480,9 +534,13 @@ footer .container > p {
     font-size: 0.9rem;
     text-align: center;
     font-style: italic;
-    border-top: 0;
     border: 1px solid #ddd;
     border-top: 0;
+}
+
+.text-content {
+    margin-bottom: 0;
+    text-align: justify;
 }
 
 /* Page number style */

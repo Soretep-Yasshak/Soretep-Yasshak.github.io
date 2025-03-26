@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const speedValue = document.getElementById('speed-value');
     const progressBar = document.getElementById('progress-bar');
 
-    // Bird card elements
-    const americanRobinCard = document.getElementById('american-robin');
-    const carolinaChickadeeCard = document.getElementById('carolina-chickadee');
-    const mourningDoveCard = document.getElementById('mourning-dove');
+    // Bird elements
+    const americanRobin = document.getElementById('american-robin');
+    const carolinaChickadee = document.getElementById('carolina-chickadee');
+    const mourningDove = document.getElementById('mourning-dove');
     
-    // Modal elements
-    const modal = document.getElementById('bird-modal');
-    const modalContent = document.getElementById('modal-content');
-    const closeButton = document.querySelector('.close-button');
+    // Audio files for birds
+    const robinAudio = new Audio('audio/american-robin-song.mp3');
+    const chickadeeAudio = new Audio('audio/carolina-chickadee-song.mp3');
+    const doveAudio = new Audio('audio/mourning-dove-song.mp3');
 
     // Audio narration functionality
     if (playButton && narration) {
@@ -65,52 +65,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Bird card functionality - redirect to bird pages
-    if (americanRobinCard) {
-        americanRobinCard.addEventListener('click', function() {
-            window.location.href = 'american-robin.html';
+    // Bird chirping functionality
+    if (americanRobin) {
+        americanRobin.addEventListener('click', function() {
+            stopAllBirdSounds();
+            robinAudio.play();
         });
     }
 
-    if (carolinaChickadeeCard) {
-        carolinaChickadeeCard.addEventListener('click', function() {
-            window.location.href = 'carolina-chickadee.html';
+    if (carolinaChickadee) {
+        carolinaChickadee.addEventListener('click', function() {
+            stopAllBirdSounds();
+            chickadeeAudio.play();
         });
     }
 
-    if (mourningDoveCard) {
-        mourningDoveCard.addEventListener('click', function() {
-            window.location.href = 'mourning-dove.html';
+    if (mourningDove) {
+        mourningDove.addEventListener('click', function() {
+            stopAllBirdSounds();
+            doveAudio.play();
         });
     }
-
-    // Modal functionality (for mobile/alternative approach)
-    // This is an alternative to the separate pages approach
-    function openModal(birdName, imgSrc, description, audioSrc) {
-        modalContent.innerHTML = `
-            <h3>${birdName}</h3>
-            <img src="${imgSrc}" alt="${birdName}" style="max-width: 100%; margin-bottom: 1rem;">
-            <p>${description}</p>
-            <div class="audio-player bird-song">
-                <h4>Listen to the ${birdName}</h4>
-                <audio controls src="${audioSrc}"></audio>
-            </div>
-        `;
-        modal.style.display = 'block';
+    
+    // Function to stop all bird sounds
+    function stopAllBirdSounds() {
+        robinAudio.pause();
+        robinAudio.currentTime = 0;
+        chickadeeAudio.pause();
+        chickadeeAudio.currentTime = 0;
+        doveAudio.pause();
+        doveAudio.currentTime = 0;
     }
-
-    if (closeButton) {
-        closeButton.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
 
     // Handle initial page load animation
     document.body.classList.add('loaded');
